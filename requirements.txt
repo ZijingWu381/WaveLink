@@ -1,0 +1,22 @@
+# Core Python libraries
+numpy
+scipy
+pandas
+matplotlib
+seaborn
+
+# PyTorch and related libraries
+torch
+torchvision
+torchaudio
+
+# Model management and optimization
+scikit-learn
+
+# Data loading and preprocessing
+tqdm
+Pillow
+
+# Jupyter and notebook support
+jupyter
+ipython

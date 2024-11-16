@@ -4,3 +4,85 @@ build
 
 .vscode
 .idea
+
+# notebook scratches
+notebooks/
+
+# project env
+wave_link/
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+__pycache__/
+*.so
+
+# Virtual environment
+.env/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Dataset files
+*.csv
+*.tsv
+*.data
+*.dat
+
+# Model checkpoints and weights
+*.h5
+*.ckpt
+*.onnx
+*.pth
+*.pt
+
+# Logs and outputs
+logs/
+*.log
+*.out
+*.txt
+
+# TensorBoard
+events.out.tfevents.*
+
+# Results
+results/
+output/
+*.pkl
+*.joblib
+
+# Temporary files
+*.tmp
+*.temp
+*.~*
+
+# System-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Pytest cache
+.cache/
+.pytest_cache/
+
+# PyTorch Lightning checkpoints
+lightning_logs/
+
+# Other temporary data
+*.npy
+*.npz
+
