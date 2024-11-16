@@ -4,6 +4,8 @@ import pandas as pd
 from brainflow.board_shim import BoardShim, BrainFlowInputParams, LogLevels, BoardIds
 from brainflow.data_filter import DataFilter
 import logging
+import os
+
 
 
 def initialize_board(serial_port):
@@ -37,8 +39,14 @@ def save_data_to_csv(data, filename="data_output.csv"):
     print(f"Data saved to {filename}")
 
 
-def main():
-    serial_port = "COM3"  # Replace with your actual serial port
+async def main():
+    # Get the directory of the current file
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Construct the relative path
+    relative_path = os.path.join(current_dir, "tempdata", "data_output_1.csv")
+
+    serial_port = "COM6"  # Replace with your actual serial port
     try:
         # Initialize the board and configure channels
         board = initialize_board(serial_port)
@@ -53,14 +61,15 @@ def main():
         board.config_board("chon_8_12")  # Example: Configure channel 8 with gain 12
         time.sleep(5)
 
-        for _ in range(10):  # Stream for 10 iterations (10 seconds)
+        while True:
             # Get the latest data from the board
-            data = np.array(board.get_current_board_data(500))
+            data = np.array(board.get_current_board_data(1250))
             df = pd.DataFrame(data).transpose()
             print(df)
 
             # Save the data to a CSV file
-            save_data_to_csv(data, "data_output.csv")
+            save_data_to_csv(data, relative_path)
+            time.sleep(10)
 
     except Exception as e:
         print(f"An error occurred: {e}")
