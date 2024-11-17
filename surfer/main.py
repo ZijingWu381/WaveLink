@@ -16,41 +16,51 @@ from models import ConvNetModel
 
 import sys
 import os
+from argparse import ArgumentParser
 
+parser = ArgumentParser()
+parser.add_argument('-D1', '--data1', type=str, help='the first processed data file name')
+parser.add_argument('-D2', '--data2', type=str, help='the second processed data file name')
 
-sys.path.append('../')
+args = parser.parse_args()
 
 np.random.seed(42)
 torch.manual_seed(42)
 
 # save paths
-model_save_path = 'surfer/model_ckpts/'
-data_path = 'data/'
+current_file_directory = os.path.dirname(os.path.abspath(__file__))
+model_save_path = os.path.join(current_file_directory, 'model_ckpts/')
+data_paths = [os.path.join(current_file_directory, '../data/processed', args.data1),
+              os.path.join(current_file_directory, '../data/processed', args.data2)]
+
 
 # Hyperparameter: number of components
 n_components = 2  # Change this value as needed
-sample_rate = 50 
-
 
 ################
 # Data Loading #
 ################
-columns_to_read = [0, 1, 6, 7]  # Example column indices you want to read
+columns_to_read = [2, 3, 4, 5, 6, 7, 8, 9]  # Example column indices you want to read
 
 # Load the data from the CSV file into a numpy ndarray,
-# skipping the first row and using specified columns
 X_all = np.loadtxt(
-    os.path.join(data_path, 'preprocessed_eeg_data.csv'),
+    os.path.join(data_paths[0]),
     delimiter=',',
-    skiprows=1,
     usecols=columns_to_read
 )
 print('Data shape after removing first row and selecting columns:', X_all.shape)
 
-# make the Y data out of X by shift by 0.5 seconds
-# TODO create loading for the separate data Y_all
-Y_all = np.concatenate([X_all[25:, :], X_all[:25, :]])
+Y_all = np.loadtxt(
+    os.path.join(data_paths[1]),
+    delimiter=',',
+    usecols=columns_to_read
+)
 
+# align data length
+if len(X_all) < len(Y_all):
+    Y_all = Y_all[:len(X_all)]
+elif len(X_all) > len(Y_all):
+    X_all = X_all[:len(Y_all)]
 
 ######################
 # Feature Extraction #
@@ -64,7 +74,7 @@ n_channels = X.shape[1]
 t = np.arange(len(X))
 
 # Initialize model, optimizer
-model = ConvNetModel()
+model = ConvNetModel(input_dim=8)
 checkpoint = torch.load(os.path.join(model_save_path, 'best_model.pth'), weights_only=False)  # Adjust the path if needed
 model.load_state_dict(checkpoint)
 model.eval()
