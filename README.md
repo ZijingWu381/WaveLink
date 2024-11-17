@@ -3,7 +3,7 @@
 </div>   
 
 
-For [natHACKS 2024](https://neuralberta.tech/nathacks/), an anual neural technology hackathon run by NeurAlbertaTech.
+For [natHACKS 2024](https://neuralberta.tech/nathacks/), an annual neural technology hackathon run by NeurAlbertaTech.
 
 # WaveLink: Neural Synchrony Detection Platform
 
