@@ -15,7 +15,7 @@ class NeuralEEGDataset(Dataset):
         x = self.X[idx]
         x = torch.from_numpy(x).float()
         # Create two augmented versions of x
-        x_i = x
+        x_i = self.augment(x.clone().detach())
         x_j = self.augment(x.clone().detach())
         return x_i, x_j
 
