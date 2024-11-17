@@ -1,131 +1,103 @@
-# WaveLink
-## <img src="/api/placeholder/300/100" alt="Project Logo" width="300">
-
-For [natHACKS 2024](https://neuralberta.tech/nathacks/) focused on ___.
-
-
-/// <a href="#overview">Overview</a> •
-  <a href="#setup">Setup</a> •
-  <a href="#vision">Vision</a> •
-  <a href="#team">Team</a> •
-  <a href="#documentation">Documentation</a> •
-  <a href="#references">References</a> </p>
-
-## Overview
-[Describe the challenge or problem statement in one paragraph. What makes this important? Who does it affect?]
-
-[Explain your innovative solution. Detail the key technologies, methodologies, or frameworks that power your project. What makes your approach unique?]
-
-## Setup
-Frontend Application:
-```bash
-[Package installation]
-[Development server launch]
-```
-
-Core Engine:
-- [Environment requirements]
-- [Configuration steps]
-
-> [!NOTE]
-> [System requirements and specifications]
-
-API Service:
-```bash
-[Launch command]
-```
-
-## Vision
-Our development roadmap includes:
-
-1. **Near-term Objectives**
-   - [Enhancement 1]
-   - [Enhancement 2]
-
-2. **Strategic Goals**
-   - [Major feature 1]
-   - [Major feature 2]
-
-3. **Long-term Aspirations**
-   - [Future direction 1]
-   - [Future direction 2]
-
-## Team
-- [Team Member 1]: [Areas of expertise]
-- [Team Member 2]: [Areas of expertise]
-- [Team Member 3]: [Areas of expertise]
-- [Team Member 4]: [Areas of expertise]
-- [Team Member 5]: [Areas of expertise]
-
-## Documentation
-- [Live Demo](url)
-- [Technical Documentation](url)
-- [Project Showcase](url)
-- [Demonstration Video](url)
-
-## References
-- [Primary Source](url)
-- [Technical Framework](url)
-- [Research Foundation](url)
+<div align="center">
+  <img src="images/logo.png" alt="WaveLink Logo" width="900">
+</div>   
 
 
-<!-- ## <img src="/api/placeholder/300/100" alt="Project Logo" width="300">
-*A [Project Type] by* <img src="/api/placeholder/60/60" alt="Company/Team Logo" width="60">
-For [Event/Hackathon Name](event-url) focused on [primary focus areas].
+For [natHACKS 2024](https://neuralberta.tech/nathacks/), an anual neural technology hackathon run by NeurAlbertaTech.
 
-/// <a href="#intro">Intro</a> •
-  <a href="#usage">How to Use</a> •
-  <a href="#roadmap-for-future">Future</a> •
-  <a href="#contributors">Contributors</a> •
-  <a href="#project-links">Links</a> •
-  <a href="#resources">Resources</a> </p>
+# WaveLink: Neural Synchrony Detection Platform
 
-## Intro
-[One paragraph explaining the problem space and its importance]
+## Project Overview
+WaveLink helps therapists and patients connect better by measuring brain activity alignment, called neural synchrony, using dual-EEG technology. Our SURFER (**S**elf-s**U**pervised co**R**relation **F**eature analyz**ER**) model processes brainwave data to show simple, clear insights on a dashboard on how synchronized two people's brain states are.
 
-[Second paragraph describing your solution and how it works. Include any key technologies, frameworks, or datasets used]
+This could potentially help therapists adjust in real time, building stronger emotional bonds, reducing stress, and improving outcomes for issues like depression, anxiety, and PTSD. WaveLink makes the invisible connection between patient and therapist visible, creating a new way to improve mental health treatment.
 
-## Usage
-Client-Side:
-```bash
-[Installation command 1]
-[Installation command 2]
-```
+## SURFER Model
 
-[Component Name]:
-- [Setup instructions]
-- [Additional notes]
+<div align="center">
+  <img src="images/model.png" alt="model overview" width="900">
+</div>   
 
-> [!IMPORTANT]
-> [Critical setup or usage information]
+## Core Components
+- Dual EEG signal processing
+- SURFER neural pattern analysis
+- Real-time synchrony quantification
+- Interactive visualization dashboard
+- Secure data management system
 
-[Additional Component]:
-```bash
-[Setup command]
-```
 
-## Roadmap for Future
-- [Short-term improvement 1]
-- [Short-term improvement 2]
-- [Medium-term goal 1]
-- [Medium-term goal 2]
-- [Long-term vision 1]
-- [Long-term vision 2]
+<!-- ## Clinical Applications
 
-## Contributors
-- [Name 1]: [Role(s)]
-- [Name 2]: [Role(s)]
-- [Name 3]: [Role(s)]
-- [Name 4]: [Role(s)]
-- [Name 5]: [Role(s)]
+### Current Use Cases
+- Depression Treatment
+- Anxiety Management
+- PTSD Therapy
+- Therapeutic Alliance Building
 
-## Project Links
-- [Project Demo/Website](url)
-- [Documentation](url)
-- [Presentation](url)
-- [Video Demo](url)
+### Extended Applications
+1. **Autism Spectrum Disorders (ASD)**
+   - Social interaction monitoring
+   - Communication pattern analysis
+   - Intervention effectiveness tracking
 
-## Resources
-- [Resource 1 Name](url)
-- [Resource 2 Name](url)
-- [Resource 3 Name](url) -->
+2. **Foster Care Settings**
+   - Attachment formation monitoring
+   - Caregiver-child bonding assessment
+   - Relationship development tracking
+
+3. **Couples Therapy**
+   - Emotional co-regulation analysis
+   - Communication pattern optimization
+   - Relationship dynamics assessment
+
+## Future Directions
+
+### Near-term Objectives
+1. **Multimodal Biometric Integration**
+   - Heart Rate Variability (HRV) monitoring
+   - Galvanic skin response tracking
+   - Temperature sensor integration
+
+2. **Enhanced Analytics**
+   - Pattern prediction algorithms
+   - Treatment outcome forecasting
+   - Personalized intervention recommendations -->
+
+<!-- ### Strategic Goals
+1. **Advanced Sensor Integration**
+   - Eye-tracking implementation
+   - Facial expression analysis
+   - Voice pattern recognition
+
+2. **Therapeutic Gamification**
+   - Interactive synchrony games
+   - Feedback-driven exercises
+   - Progress tracking systems -->
+
+<!-- ### Long-term Aspirations
+1. **Comprehensive Platform Development**
+   - Mobile application integration
+   - Cloud-based analysis platform
+   - Real-time intervention suggestions
+
+2. **Research Expansion**
+   - Cross-cultural validation studies
+   - Longitudinal outcome tracking -->
+
+## Academic References
+<!-- 
+### Neural Synchrony
+1. Goldstein, P., et al. (2018). "Brain-to-brain synchrony during naturalistic social interactions." *Nature Human Behaviour*, 2(7), 442-451.
+
+2. Kinreich, S., et al. (2017). "Brain-to-brain synchrony during naturalistic social interactions." *Scientific Reports*, 7(1), 1-12.
+
+### Therapeutic Applications
+3. Koole, S. L., & Tschacher, W. (2016). "Synchrony in psychotherapy: A review and an integrative framework for the therapeutic alliance." *Frontiers in Psychology*, 7, 862.
+
+4. Ramseyer, F., & Tschacher, W. (2011). "Nonverbal synchrony in psychotherapy." *Journal of Consulting and Clinical Psychology*, 79(3), 284.
+
+### Technical Implementation
+5. Zhang, D., et al. (2019). "A self-supervised learning framework for EEG-based emotion recognition." *IEEE Transactions on Neural Systems and Rehabilitation Engineering*, 27(8), 1594-1604.
+
+6. Wang, Y., et al. (2020). "Deep learning for real-time EEG analysis: A systematic review." *IEEE Access*, 8, 175112-175130. -->
+
