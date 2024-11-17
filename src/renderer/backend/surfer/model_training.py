@@ -13,11 +13,13 @@ from dataset import NeuralEEGDataset
 import sys
 import os
 
+from utils import np_standardize
+
 from argparse import ArgumentParser
 parser = ArgumentParser()
 parser.add_argument('-P', '--pretrained', action='store_true',
                     help="use pretrained model weights")
-parser.add_argument('-D', '--data', type=str, help='processed data file name')
+parser.add_argument('-D', '--data', type=str, nargs='+', help='processed data file name(s)')
 # parser.add_argument('-BE', '--beta', type=float, default=1.0, help="beta value for KL loss scaling like in beta-VAE")
 # parser.add_argument('-CE', '--ckpt_epochs', type=int, default=0, help="number of epochs trained before resuming training")
 # parser.add_argument('-CS', '--category_scales', type=float, nargs='+', help="scaling factor for each category for igr models")
@@ -34,18 +36,26 @@ torch.manual_seed(42)
 # save paths
 current_file_directory = os.path.dirname(os.path.abspath(__file__))
 model_save_path = os.path.join(current_file_directory, 'model_ckpts/')
-data_path = os.path.join(current_file_directory, '../data/processed', args.data)
+data_paths = [os.path.join(current_file_directory, '../data/processed', d) for d in args.data]
 
 # Hyperparameter: number of components
 columns_to_read = [2, 3, 4, 5, 6, 7, 8, 9]  # Example column indices you want to read
 
 # Load the data from the CSV file into a numpy ndarray,
-X = np.loadtxt(
-    data_path,
-    delimiter=',',
-    usecols=columns_to_read
-)
+X = []
+for path in data_paths:
+    X.append(
+        np.loadtxt(
+            path,
+            delimiter=',',
+            usecols=columns_to_read
+        )
+    )
+X = np.concatenate(X) 
 print('Data shape after removing first row and selecting columns:', X.shape)
+
+# Standardization of data
+X = np_standardize(X)
 
 n_samples = len(X)
 n_channels = X.shape[1]
