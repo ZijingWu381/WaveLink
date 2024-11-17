@@ -146,8 +146,9 @@ class EEGProcessor:
 
 
 def main():
+    currentdir = os.path.dirname(os.path.abspath(__file__))
     serial_port = "COM6"  # Replace with your actual serial port
-    output_file = "raw_eeg_data1.csv"
+    output_file = os.path.join(currentdir,"tempdata", "data_output_1.csv")
     streaming_duration = 10000000  # Stream indefinetely
     interval = 10  # Process data every 10 seconds
 

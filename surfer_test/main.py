@@ -27,7 +27,7 @@ args = parser.parse_args()
 np.random.seed(42)
 torch.manual_seed(42)
 
-# save paths
+# save pathsz
 current_file_directory = os.path.dirname(os.path.abspath(__file__))
 model_save_path = os.path.join(current_file_directory, 'model_ckpts/')
 data_paths = [os.path.join(current_file_directory, '../data/processed', args.data1),
@@ -100,36 +100,36 @@ X_c, Y_c = cca.transform(X_feats, Y_feats)
 canonical_corrs = [np.corrcoef(X_c[:, i], Y_c[:, i])[0, 1] for i in range(n_components)]
 print(canonical_corrs)
 
-# Plot the original X and Y data
-fig, axs = plt.subplots(n_channels, 2, figsize=(12, 8))
+# # Plot the original X and Y data
+# fig, axs = plt.subplots(n_channels, 2, figsize=(12, 8))
 
-for i in range(n_channels):
-    axs[i, 0].plot(t, X[:, i])
-    axs[i, 0].set_title(f'X Channel {i+1}')
-    axs[i, 0].set_xlabel('Time')
-    axs[i, 0].set_ylabel('Amplitude')
+# for i in range(n_channels):
+#     axs[i, 0].plot(t, X[:, i])
+#     axs[i, 0].set_title(f'X Channel {i+1}')
+#     axs[i, 0].set_xlabel('Time')
+#     axs[i, 0].set_ylabel('Amplitude')
 
-    axs[i, 1].plot(t, Y[:, i], color='orange')
-    axs[i, 1].set_title(f'Y Channel {i+1}')
-    axs[i, 1].set_xlabel('Time')
-    axs[i, 1].set_ylabel('Amplitude')
+#     axs[i, 1].plot(t, Y[:, i], color='orange')
+#     axs[i, 1].set_title(f'Y Channel {i+1}')
+#     axs[i, 1].set_xlabel('Time')
+#     axs[i, 1].set_ylabel('Amplitude')
 
-plt.tight_layout()
-plt.show()
+# plt.tight_layout()
+# plt.show()
 
-# Plot the transformed canonical components over time
-fig, axs = plt.subplots(n_components, 1, figsize=(12, 4 * n_components))
+# # Plot the transformed canonical components over time
+# fig, axs = plt.subplots(n_components, 1, figsize=(12, 4 * n_components))
 
-for i in range(n_components):
-    axs[i].plot(t, X_c[:, i], label=f'Transformed X Component {i+1}')
-    axs[i].plot(t, Y_c[:, i], label=f'Transformed Y Component {i+1}')
-    axs[i].set_xlabel('Time')
-    axs[i].set_ylabel('Canonical Component Value')
-    axs[i].set_title(f'Canonical Components {i+1} over Time')
-    axs[i].legend()
+# for i in range(n_components):
+#     axs[i].plot(t, X_c[:, i], label=f'Transformed X Component {i+1}')
+#     axs[i].plot(t, Y_c[:, i], label=f'Transformed Y Component {i+1}')
+#     axs[i].set_xlabel('Time')
+#     axs[i].set_ylabel('Canonical Component Value')
+#     axs[i].set_title(f'Canonical Components {i+1} over Time')
+#     axs[i].legend()
 
-plt.tight_layout()
-plt.show()
+# plt.tight_layout()
+# plt.show()
 
 
 

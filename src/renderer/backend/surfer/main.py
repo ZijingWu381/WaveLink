@@ -12,7 +12,7 @@ from sklearn.cross_decomposition import CCA
 import torch
 import torch.nn as nn
 
-from models import ConvNetModel
+from surfer.models import ConvNetModel
 
 import sys
 import os
@@ -20,48 +20,45 @@ import os
 
 sys.path.append('../')
 
-def main():
+def run():
     np.random.seed(42)
     torch.manual_seed(42)
     current_dir = os.path.dirname(os.path.abspath(__file__))
     parent_dir = os.path.dirname(current_dir)
-    data_path = os.path.join(parent_dir, 'tempdata')
+    data_path = os.path.join(parent_dir, 'moretemp')
 
+    data_paths = [os.path.join(data_path, 'preprocessed_data_output_1.csv'),
+                  os.path.join(data_path, 'preprocessed_data_output_2.csv')]
     # save paths
     model_save_path = os.path.join(current_dir, 'model_ckpts')
 
     # Hyperparameter: number of components
     n_components = 2  # Change this value as needed
-    sample_rate = 50 
-
 
     ################
     # Data Loading #
     ################
-    columns_to_read = [0, 1, 6, 7]  # Example column indices you want to read
+    columns_to_read = [2, 3, 4, 5, 6, 7, 8, 9]  # Example column indices you want to read
 
     # Load the data from the CSV file into a numpy ndarray,
-    # skipping the first row and using specified columns
     X_all = np.loadtxt(
-        os.path.join(data_path, 'data_output_1.csv'),
+        os.path.join(data_paths[0]),
         delimiter=',',
-        skiprows=1,
         usecols=columns_to_read
     )
-
-    Y_all = np.loadtxt(
-        os.path.join(data_path, 'data_output_2.csv'),
-        delimiter=',',
-        skiprows=1,
-        usecols=columns_to_read
-    )
-
     print('Data shape after removing first row and selecting columns:', X_all.shape)
 
-    # # make the Y data out of X by shift by 0.5 seconds
-    # # TODO create loading for the separate data Y_all
-    # Y_all = np.concatenate([X_all[25:, :], X_all[:25, :]])
+    Y_all = np.loadtxt(
+        os.path.join(data_paths[1]),
+        delimiter=',',
+        usecols=columns_to_read
+    )
 
+    # align data length
+    if len(X_all) < len(Y_all):
+        Y_all = Y_all[:len(X_all)]
+    elif len(X_all) > len(Y_all):
+        X_all = X_all[:len(Y_all)]
 
     ######################
     # Feature Extraction #
@@ -75,7 +72,7 @@ def main():
     t = np.arange(len(X))
 
     # Initialize model, optimizer
-    model = ConvNetModel()
+    model = ConvNetModel(input_dim=8)
     checkpoint = torch.load(os.path.join(model_save_path, 'best_model.pth'), weights_only=False)  # Adjust the path if needed
     model.load_state_dict(checkpoint)
     model.eval()
@@ -100,6 +97,10 @@ def main():
     # Calculate the canonical correlation coefficients
     canonical_corrs = [np.corrcoef(X_c[:, i], Y_c[:, i])[0, 1] for i in range(n_components)]
     print(canonical_corrs)
+
+
+    for path in data_paths:
+        os.remove(path)
     return canonical_corrs[0]
 
     # # Plot the original X and Y data

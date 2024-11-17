@@ -86,3 +86,4 @@ lightning_logs/
 *.npy
 *.npz
 
+/src/renderer/backend/new_env
