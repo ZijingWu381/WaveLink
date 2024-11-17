@@ -19,11 +19,10 @@ This could potentially help therapists adjust in real time, building stronger em
 </div>   
 
 ## Core Components
-- Dual EEG signal processing
-- SURFER neural pattern analysis
+- Dual EEG signal preprocessing
+- SURFER neural feature extraction
 - Real-time synchrony quantification
-- Interactive visualization dashboard
-- Secure data management system
+- Web-deved visualization dashboard
 
 
 <!-- ## Clinical Applications
@@ -84,7 +83,13 @@ This could potentially help therapists adjust in real time, building stronger em
    - Cross-cultural validation studies
    - Longitudinal outcome tracking -->
 
-## Academic References
+## References
+Kinreich, Sivan et al. “Brain-to-Brain Synchrony during Naturalistic Social Interactions.” Scientific reports vol. 7,1 17060. 6 Dec. 2017, doi:10.1038/s41598-017-17339-5
+
+Sened H, Zilcha-Mano S and Shamay-Tsoory S (2022) Inter-brain plasticity as a biological mechanism of change in psychotherapy: A review and integrative model. Front. Hum. Neurosci. 16:955238. doi: 10.3389/fnhum.2022.955238
+
+Chen, T., Kornblith, S., Norouzi, M., & Hinton, G. (2020, November). A simple framework for contrastive learning of visual representations. In International conference on machine learning (pp. 1597-1607). PMLR.
+
 <!-- 
 ### Neural Synchrony
 1. Goldstein, P., et al. (2018). "Brain-to-brain synchrony during naturalistic social interactions." *Nature Human Behaviour*, 2(7), 442-451.
