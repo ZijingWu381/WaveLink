@@ -25,6 +25,18 @@ function createWindow() {
   } else {
     mainWindow.loadFile(join(app.getAppPath(), 'renderer', 'index.html'));
   }
+
+  // Log when the window is ready to show
+  mainWindow.once('ready-to-show', () => {
+    console.log('Window is ready to show');
+    mainWindow.show();
+  });
+
+  // Defer heavy tasks
+  setTimeout(() => {
+    console.log('Performing heavy tasks');
+    // Perform heavy tasks here
+  }, 1000);
 }
 
 app.whenReady().then(() => {
@@ -52,6 +64,6 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 });
 
-ipcMain.on('message', (event, message) => {
+ipcMain.on('message', (_, message) => {
   console.log(message);
-})
+});

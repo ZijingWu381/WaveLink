@@ -7,6 +7,15 @@ from RunModel import main_func
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
+if len(os.listdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "tempdata"))) > 0:
+    for file in os.listdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "tempdata")):
+        os.remove(os.path.join(os.path.dirname(os.path.abspath(__file__)), "tempdata", file))
+
+if len(os.listdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "moretemp"))) > 0:
+    for file in os.listdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "moretemp")):
+        os.remove(os.path.join(os.path.dirname(os.path.abspath(__file__)), "moretemp", file))
+
+
 
 @app.route('/')
 def index():

@@ -13,7 +13,9 @@ from dataset import NeuralEEGDataset
 import sys
 import os
 
-from utils import np_standardize
+def np_standardize(X, axis=0):
+    return (X - np.mean(X, axis)) / np.std(X, axis)
+
 
 from argparse import ArgumentParser
 parser = ArgumentParser()

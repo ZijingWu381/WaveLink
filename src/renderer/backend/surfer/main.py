@@ -17,6 +17,8 @@ from surfer.models import ConvNetModel
 import sys
 import os
 
+def np_standardize(X, axis=0):
+    return (X - np.mean(X, axis)) / np.std(X, axis)
 
 sys.path.append('../')
 
@@ -53,6 +55,10 @@ def run():
         delimiter=',',
         usecols=columns_to_read
     )
+
+    # Standardization of data
+    X_all = np_standardize(X_all, axis=0)
+    Y_all = np_standardize(Y_all, axis=0)
 
     # align data length
     if len(X_all) < len(Y_all):
