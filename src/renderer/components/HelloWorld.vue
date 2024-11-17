@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ backgroundColor: colour }" class="dial-container">
+  <div :style="{ backgroundColor: colour }" class="dial-container fade-in">
     <canvas ref="canvasRef" width="400" height="400" class="dial-canvas"></canvas>
     <div class="dial-info">
       <h3>Synchrony</h3>
@@ -66,11 +66,8 @@ const getColorFromGradient = (ratio) => {
   }
   return gradientStops[gradientStops.length - 1].color
 }
-// Computed property to get the background color based on the value
-// const backgroundColor = computed(() => {
-//   return getColorFromGradient(value.value / 100)
-// })
 
+// Update the background color based on the value
 const colourchange = (backval: number) => {
   colour.value = getColorFromGradient(backval / 100)
   console.log(colour.value)
@@ -117,7 +114,6 @@ const drawDial = (ctx: CanvasRenderingContext2D, width: number, height: number, 
   const gradient = ctx.createLinearGradient(0, 0, width, 0)
   gradientStops.forEach(stop => gradient.addColorStop(stop.stop, stop.color))
 
-
   ctx.beginPath()
   ctx.arc(width / 2, height / 2, 160, 0.75 * Math.PI, 0.25 * Math.PI, false)
   ctx.strokeStyle = gradient
@@ -125,7 +121,7 @@ const drawDial = (ctx: CanvasRenderingContext2D, width: number, height: number, 
   ctx.stroke()
   
   // Determine the needle color based on the angle
-  const backcolour = getColorFromGradient(value.value/100)
+  const backcolour = getColorFromGradient(value.value / 100)
   const needleColor = 'black'
 
   // Draw the dial needle
@@ -177,9 +173,7 @@ onMounted(() => {
   socket.on('update_data', (data) => {
     console.log('Received data:', data);
     value.value = data.value
-    // Smoothly update the dial angle
     updateDialAngle(data.value, 0.1)
-
     colourchange(value.value)
   })
 
@@ -199,37 +193,48 @@ onUnmounted(() => {
   }
 })
 </script>
+
 <style scoped>
 .dial-container {
-  position: relative; /* Ensure the container is positioned relative */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  transition: background-color 0.5s ease; /* Smooth transition for background color */
+  transition: background-color 0.5s ease;
+  opacity: 0; /* Initially set opacity to 0 */
+}
+
+.fade-in {
+  animation: fadeIn 1s forwards; /* Apply fade-in animation */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 .dial-canvas {
   background: white;
   border: 1px solid #ccc;
-  border-radius: 50%; /* Make the canvas circular */
-  width: 400px; /* Ensure the width and height are equal */
-  height: 400px; /* Ensure the width and height are equal */
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
 }
 
 .dial-info {
-  position: absolute; /* Position the dial-info div absolutely */
-  top: 50%; /* Position it at the vertical center */
-  left: 50%; /* Position it at the horizontal center */
-  transform: translate(-50%, 110px); /* Center it horizontally and move it 30px down */
-  background: rgba(255, 255, 255, 0.8); /* Optional: Add a background with some transparency */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 110px);
   padding: 10px;
   border-radius: 8px;
   text-align: center;
-  
 }
-.dial-info h3 {
+
+.dial-info h3, .dial-info p {
   margin: 0 0 10px 0;
   color: #333;
   font-family: 'Montserrat', sans-serif;
@@ -239,19 +244,5 @@ onUnmounted(() => {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  margin-bottom: -10px;
-}
-
-.dial-info p {
-  margin: 5px 0;
-  color: #666;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: 1.5rem;
-  background: linear-gradient(90deg, #2196F3, #21CBF3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  margin-bottom: -10px;
 }
 </style>
