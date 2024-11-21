@@ -24,6 +24,15 @@ This could potentially help therapists adjust in real time, building stronger em
 - Real-time synchrony quantification
 - Web-deved visualization dashboard
 
+## Team 
+- Zijing Wu 
+- Sean Piatt  
+- MegH Mistry
+- Hildelith Leyser 
+- Ian Goodall-Halliwell 
+- Sikanderdeep Singh Kingra
+
+
 
 <!-- ## Clinical Applications
 
